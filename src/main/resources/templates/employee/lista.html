@@ -8,8 +8,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <title>Lista de Empleados</title>
 </head>
+
 <body>
     <div class="container">
+        <!-- fragmento de la cabecera-->
+        <div th:replace="fragmento/fragmentos.html :: barraSuperior"></div>
+
         <h1>Lista de Empleados</h1>
         <a class="btn btn-primary mt-4 mb-4" th:href="@{}"></a>                 <!-- COMPLETAR -->
         <form class="input-group mb-lg-3" method="post" th:action="@{}">                <!-- COMPLETAR -->
@@ -25,10 +29,38 @@
                 <thead>
                 <tr>
                     <!-- COMPLETAR -->
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">apellido</th>
+                    <th scope="col">puesto</th>
+                    <th scope="col">departamento</th>
+                    <th scope="col">ciudad</th>
+                    <th></th>
+                    <th></th>
+
                 </tr>
                 </thead>
                 <tbody>
                 <!-- COMPLETAR -->
+                <tr th:each="e,i:${ listaempleado }">
+                    <th th:text="${i.index+1}" scope="col"></th>
+                    <th scope="col" th:text="${e.firstName}"></th>
+                    <th scope="col" th:text="${e.lastName}"></th>
+                    <th scope="col" th:text="${e.jobs.job_title}"></th>
+                    <th scope="col" th:text="${e.salary}"></th>
+                    <th scope="col" th:text="${e.   }"></th>
+                    <th scope="col" th:text="${e.getSalary()}"></th>
+                    <th scope="col" th:text="${e.getCommissionPct()}"></th>
+
+                    <th scope="col" th:if="${e.manager != null}" th:text="${e.manager.getFirstName()}"></th>
+
+                    <td>
+                        <a class="btn btn-primary" >Editar Employee</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" >Borrar Employee </a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
