@@ -18,8 +18,12 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @Controller
 @RequestMapping("/Employees")
+
+//COMPLETAR
+
 public class EmployeeController {
 
     @Autowired
@@ -27,6 +31,9 @@ public class EmployeeController {
 
     @Autowired
     JobsRepository jobsRepository;
+
+
+
     @Autowired
     DepartmentsRepository departmentsRepository;
 
@@ -71,16 +78,31 @@ public class EmployeeController {
         }
 
 
+
         public String guardarEmployee () {
             //COMPLETAR
             return "";
         }
 
+    @GetMapping("/editar")
+    public String editarEmployee(Model model,
+                                      @RequestParam("id") int id) {
+        List<Jobs> listaJobs= jobsRepository.findAll();
+        Optional<Employees> optEmployee = employeesRepository.findById(id);
 
-        public String editarEmployee () {
-            //COMPLETAR
-            return "";
+        if (optEmployee.isPresent()) {
+            Employees employees = optEmployee.get();
+            model.addAttribute("employees", employees);
+            model.addAttribute("listaJobs", listaJobs);
+            return "employee/editFrm";
+        } else {
+            return "redirect:/Employee";
         }
+    }
+
+
+
+        
 
         @GetMapping("/borrar")
         public String borrarEmpleado (

@@ -13,21 +13,15 @@ public class Employees {
     private int employeeId;
 
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
+
+
 
 
     @Column(nullable=false)
     private String firstName;
     private String lastName;
     private String email;
-
-
 
     private String phoneNumber;
     @Column(nullable=false)
@@ -112,5 +106,13 @@ public class Employees {
 
     public void setManager(Employees manager) {
         this.manager = manager;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 }
