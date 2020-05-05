@@ -34,8 +34,10 @@ public class EmployeeController {
 
 
 
+
     @Autowired
     DepartmentsRepository departmentsRepository;
+
 
     public List<Employees> listaEmployee() {
         List<Employees> listemp = employeesRepository.findAll();

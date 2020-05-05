@@ -10,6 +10,7 @@ import java.util.Date;
 public class Employees {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeId;
 
 
