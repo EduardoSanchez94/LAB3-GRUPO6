@@ -25,4 +25,52 @@ public class Locations {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private String country;
+
+    public int getLocationid() {
+        return locationid;
+    }
+
+    public void setLocationid(int locationid) {
+        this.locationid = locationid;
+    }
+
+    public String getStreetaddress() {
+        return streetaddress;
+    }
+
+    public void setStreetaddress(String streetaddress) {
+        this.streetaddress = streetaddress;
+    }
+
+    public String getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStateprovince() {
+        return stateprovince;
+    }
+
+    public void setStateprovince(String stateprovince) {
+        this.stateprovince = stateprovince;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }

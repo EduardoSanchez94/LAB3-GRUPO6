@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 //COMPLETAR
 @Controller
@@ -42,10 +45,21 @@ public class EmployeeController {
         return "";
     }
 
+    @GetMapping("/delete")
+    public String borrarEmpleado(Model model,
+                                 @RequestParam("id") int id,
+                                 RedirectAttributes attr) {
 
-    public String borrarEmpleado() {
 
-       //COMPLETAR
+        Optional<Employees> idEmployee = employeesRepository.findById(id);
+
+        if (idEmployee.isPresent()) {
+                employeesRepository.deleteById(id);
+                attr.addFlashAttribute("msg","Producto borrado exitosamente");
+            }
+            return "redirect:/product";
+
+
         return "";
 
     }
