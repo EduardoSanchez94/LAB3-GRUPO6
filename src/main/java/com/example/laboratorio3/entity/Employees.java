@@ -12,6 +12,7 @@ public class Employees {
     @Id
     private int employeeId;
 
+
     public int getEmployeeId() {
         return employeeId;
     }
@@ -20,10 +21,14 @@ public class Employees {
         this.employeeId = employeeId;
     }
 
+
     @Column(nullable=false)
     private String firstName;
     private String lastName;
     private String email;
+
+
+
     private String phoneNumber;
     @Column(nullable=false)
     private Date hireDate;
@@ -35,7 +40,6 @@ public class Employees {
     @ManyToOne
     @JoinColumn(name="manager_id")
     private Employees manager;
-
 
 
     public String getFirstName() {
