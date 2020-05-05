@@ -1,7 +1,9 @@
 package com.example.laboratorio3.controller;
 
+import com.example.laboratorio3.entity.Department;
 import com.example.laboratorio3.entity.Employees;
 import com.example.laboratorio3.entity.Jobs;
+import com.example.laboratorio3.repository.DepartmentsRepository;
 import com.example.laboratorio3.repository.EmployeesRepository;
 import com.example.laboratorio3.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class EmployeeController {
 
     @Autowired
     JobsRepository jobsRepository;
+    @Autowired
+    DepartmentsRepository departmentsRepository;
 
     public List<Employees> listaEmployee() {
         List<Employees> listemp = employeesRepository.findAll();
@@ -50,11 +54,20 @@ public class EmployeeController {
             List<Jobs> listjobs = jobsRepository.findAll();
             return listjobs;
         }
+        public  List<Department> listadepartments(){
+            List<Department> listdepas = departmentsRepository.findAll();
+            Department d = new Department();
+            d.setDepartment_id(0);
+            d.setDepartment_name("sin departamento");
+            listdepas.add(0, d);
+            return listdepas;
+        }
         @GetMapping("/crear")
         public String nuevoEmployeeForm (Model model){
             model.addAttribute("listajefes", listajefes());
             model.addAttribute("listapuestos", listajobs());
-            return "";
+            model.addAttribute("listadepartments", listadepartments());
+            return "employee/crearForm";
         }
 
 
