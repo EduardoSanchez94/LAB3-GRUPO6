@@ -14,11 +14,6 @@ public class Employees {
     private int employeeId;
 
 
-
-
-
-
-
     @Column(nullable=false)
     private String firstName;
     private String lastName;
