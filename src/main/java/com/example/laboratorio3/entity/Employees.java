@@ -10,7 +10,7 @@ import java.util.Date;
 public class Employees {
 
     @Id
-    private String employeeId;
+    private int employeeId;
     @Column(nullable=false)
     private String firstName;
     private String lastName;
@@ -27,13 +27,7 @@ public class Employees {
     @JoinColumn(name="manager_id")
     private Employees manager;
 
-    public String getEmployeeId() {
-        return employeeId;
-    }
 
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -105,5 +99,13 @@ public class Employees {
 
     public void setManager(Employees manager) {
         this.manager = manager;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 }
