@@ -26,6 +26,7 @@ public class EmployeeController {
     @Autowired
     JobsRepository jobsRepository;
 
+
     public List<Employees> listaEmployee() {
         List<Employees> listemp = employeesRepository.findAll();
         return listemp;
