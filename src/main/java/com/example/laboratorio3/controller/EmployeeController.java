@@ -136,6 +136,13 @@ public class EmployeeController {
             return "redirect:/Employees";
         }
 
-        //COMPLETAR
+    @GetMapping("/ReporteSalario")
+    public String salarioporDepa(Model model) {
+
+        model.addAttribute("listaEmpleadosPorRegion", departmentsRepository.obtenerSalarioporDepa());
+        return "Employee/reporte";
+    }
+
+    //COMPLETAR
 
     }
