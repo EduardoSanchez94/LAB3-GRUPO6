@@ -38,6 +38,10 @@ public class EmployeeController {
     @Autowired
     DepartmentsRepository departmentsRepository;
 
+    @GetMapping("/index")
+    public String primera(){
+        return "index";
+    }
 
     public List<Employees> listaEmployee() {
         List<Employees> listemp = employeesRepository.findAll();
