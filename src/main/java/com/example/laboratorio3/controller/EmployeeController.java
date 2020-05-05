@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -38,6 +39,10 @@ public class EmployeeController {
     @Autowired
     DepartmentsRepository departmentsRepository;
 
+    @GetMapping("/index")
+    public String primera(){
+        return "index";
+    }
 
     public List<Employees> listaEmployee() {
         List<Employees> listemp = employeesRepository.findAll();
@@ -79,11 +84,15 @@ public class EmployeeController {
             return "employee/newFrm";
         }
 
-
-
-        public String guardarEmployee () {
-            //COMPLETAR
-            return "";
+        @GetMapping("/guardar")
+        public String guardarEmployee (Employees employees, RedirectAttributes attr) {
+            if (employees.getEmployeeId() == 0) {
+                attr.addFlashAttribute("msg", "Employee creado exitosamente");
+            } else {
+                attr.addFlashAttribute("msg", "Employee actualizado exitosamente");
+            }
+            employeesRepository.save(employees);
+            return "redirect:/Employees";
         }
 
     @GetMapping("/editar")
@@ -98,7 +107,7 @@ public class EmployeeController {
             model.addAttribute("listaJobs", listaJobs);
             return "employee/editFrm";
         } else {
-            return "redirect:/Employee";
+            return "redirect:/Employees";
         }
     }
 
@@ -111,14 +120,20 @@ public class EmployeeController {
         @RequestParam("id") int id,
         RedirectAttributes attr){
 
-
             Optional<Employees> idEmployee = employeesRepository.findById(id);
 
             if (idEmployee.isPresent()) {
                 employeesRepository.deleteById(id);
+                attr.addFlashAttribute("msg","Employee borrado exitosamente");
             }
             return "redirect:/Employees";
 
+        }
+        @PostMapping("/buscar")
+        public String buscar(Model model, @RequestParam ("nom") String nombre){
+            List<Employees> lista = employeesRepository.findByFirstNameOrLastName(nombre);
+            model.addAttribute("listaempleado",lista);
+            return "redirect:/Employees";
         }
 
         //COMPLETAR

@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <title>Lista de Empleados</title>
+
+<head th:replace="fragmento/fragmento.html :: cabecera(titulo ='lista de empleados')">
 </head>
 
+<form method="post" th:action="@{'/buscar'}">
+
+</form>
 <body>
     <div class="container">
-        <!-- fragmento de la cabecera-->
-        <div th:replace="fragmento/fragmentos.html :: barraSuperior"></div>
-
         <h1>Lista de Empleados</h1>
-        <a class="btn btn-primary mt-4 mb-4" th:href="@{}"></a>                 <!-- COMPLETAR -->
-        <form class="input-group mb-lg-3" method="post" th:action="@{}">                <!-- COMPLETAR -->
-            <!-- COMPLETAR -->
+        <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/Employees/crear'}">Nuevo Empleado</a>                 <!-- COMPLETAR -->
+        <form class="input-group mb-lg-3" method="post" th:action="@{'/Employees/buscar'}">
             <div class="input-group-append">
-                <!-- COMPLETAR -->
+                <input name="nom" class="form-control mb-3" type="text" placeholder="Search" aria-label="Search">
             </div>
         </form>
-
-        <!-- COMPLETAR -->
-        <!-- COMPLETAR -->
-            <table class="table table-sm" th:if="${}">
+            <table class="table table-sm">
                 <thead>
                 <tr>
                     <!-- COMPLETAR -->
@@ -47,7 +39,7 @@
                     <th scope="col" th:text="${e.firstName}"></th>
                     <th scope="col" th:text="${e.lastName}"></th>
                     <th scope="col" th:text="${e.jobs.job_title}"></th>
-                    <th scope="col" th:text="${}"></th>
+                    <th scope="col" th:text="${  }"></th>
                     <th scope="col" th:text="${}"></th>
                     <td><a class="btn btn-primary" th:href="@{'/Employees/editar' + '?id=' + ${e.employeeId}}">Editar</a>
                     <td><a class="btn btn-primary" th:href="@{'/Employees/borrar' + '?id=' + ${e.employeeId}}">Editar</a>
