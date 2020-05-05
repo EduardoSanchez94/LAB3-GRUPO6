@@ -9,22 +9,21 @@
         <title>Lista de Empleados</title>
 </head>
 
+<form method="post" th:action="@{'/buscar'}">
+
+</form>
 <body>
     <div class="container">
-        <!-- fragmento de la cabecera-->
         <div th:replace="fragmento/fragmentos.html :: barraSuperior"></div>
 
         <h1>Lista de Empleados</h1>
-        <a class="btn btn-primary mt-4 mb-4" th:href="@{}"></a>                 <!-- COMPLETAR -->
-        <form class="input-group mb-lg-3" method="post" th:action="@{}">                <!-- COMPLETAR -->
-            <!-- COMPLETAR -->
+        <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/Employees/crear'}">Nuevo Empleado</a>                 <!-- COMPLETAR -->
+        <form class="input-group mb-lg-3" method="post" th:action="@{'/Employees/buscar'}">
             <div class="input-group-append">
-                <!-- COMPLETAR -->
+                <input name="nom" class="form-control mb-3" type="text" placeholder="Search" aria-label="Search">
             </div>
         </form>
-
-        <!-- COMPLETAR -->
-        <!-- COMPLETAR -->
             <table class="table table-sm" th:if="${}">
                 <thead>
                 <tr>
