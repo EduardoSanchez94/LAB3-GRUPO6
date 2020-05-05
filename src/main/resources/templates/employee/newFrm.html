@@ -3,55 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuevo Empleado</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
-    <h2>Nuevo Empleado</h2><hr />
-        <form method="post" th:action="@{}">                <!-- COMPLETAR -->
-            <div class="row">
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-            </div>
+<h2>Nuevo Empleado</h2>
+<hr/>
+<form th:action="@{'/employee/save'}" method="post">
+    <div class="form-group">
+        <label for="firstname">Nombre</label>
+        <input type="text" class="form-control" name="firstname" id="firstname"/>
+    </div>
+    <div class="form-group">
+        <label for="lastname">Apellido</label>
+        <input type="text" class="form-control" name="lastname" id="lastname"/>
+    </div>
+    <div class="form-group">
+        <label for="title">email</label>
+        <input type="text" class="form-control" name="title" id="title"/>
+    </div>
+    <div class="form-group">
+        <label for="password">contraseña</label>
+        <input type="text" class="form-control" name="password" placeholder="contraseña"
+               id="titleofcourtesy"/>
+    </div>
+    <div class="form-group">
+        <label for="manager">Puesto</label>
+        <select class="form-control" name="manager" id="manager">
+            <option th:each="puesto : ${listapuestos}" th:text="|${puesto.job_title==null?'':puesto.job_title}|"
+                    th:value="${puesto.job_id}"></option>
+        </select>
+    </div>
 
-            <div class="row">
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-                <div class="form-group col-6">
-                    <!-- COMPLETAR -->
-                </div>
-            </div>
-
-            <a th:href="@{}" class="btn btn-danger"></a>                 <!-- COMPLETAR -->
-            <button type="submit" class="btn btn-primary"></button>                <!-- COMPLETAR -->
-            <div class="row">
-                <div class="form-group"></div>
-            </div>
-        </form>
-    </body>
+    <div class="form-group">
+        <label for="manager">Jefe</label>
+        <select class="form-control" name="manager" id="manager">
+            <option th:each="jefe : ${listajefes}" th:text="|${jefe.firstName} ${jefe.lastName==null?'':jefe.lastName}|"
+                    th:value="${jefe.id}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="manager">Departamento</label>
+        <select class="form-control" name="manager" id="manager">
+            <option th:each="depa : ${listadepartments}"
+                    th:text="|${depa.department_name==null?'Sin departamento':depa.department_name}|"
+                    th:value="${depa.department_id}"></option>
+        </select>
+    </div>
+    <a th:href="@{'/employee'}" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+</div>
+</body>
 </html>

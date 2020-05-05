@@ -74,7 +74,7 @@ public class EmployeeController {
             model.addAttribute("listajefes", listajefes());
             model.addAttribute("listapuestos", listajobs());
             model.addAttribute("listadepartments", listadepartments());
-            return "employee/crearForm";
+            return "employee/newFrm";
         }
 
 
@@ -102,7 +102,7 @@ public class EmployeeController {
 
 
 
-        
+
 
         @GetMapping("/borrar")
         public String borrarEmpleado (
