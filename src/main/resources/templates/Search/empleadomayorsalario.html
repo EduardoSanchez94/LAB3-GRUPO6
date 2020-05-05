@@ -24,12 +24,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="em : ${  }">
-            <td th:text="${  }"></td>
-            <td th:text="${ }"></td>
-            <td th:text="${ }"></td>
-            <td th:text="${ }"></td>
-            <td th:text="${ }"></td>
+        <tr th:each="em : ${empleadomayorsalario}>
+
+            <td th:text="${em.getNombre}"></td>
+            <td th:text="${ em.getApellido}"></td>
+            <td th:text="${em.getFechaIncio}"></td>
+            <td th:text="${em.getFechafin }"></td>
 
         </tr>
         </tbody>
